@@ -30,9 +30,9 @@ func withdraw(balance *float64, amount float64){
 
 func main(){
 	balance := 500.0
-	withdraw(&balance,1000)
+	go withdraw(&balance,1000)
 	time.Sleep(5*time.Microsecond)
-	deposit(&balance,500)
+	go deposit(&balance,500)
 	time.Sleep(5*time.Microsecond)
-	withdraw(&balance,1000)
+	go withdraw(&balance,1000)
 }
