@@ -28,7 +28,7 @@ func main(){
 	var wg sync.WaitGroup
 	for i:=0;i<200;i++{
 		wg.Add(1)
-		getRating(&wg,&totalRating)
+		go getRating(&wg,&totalRating)
 	}
 	wg.Wait()
 	ans := float64(totalRating)/200
