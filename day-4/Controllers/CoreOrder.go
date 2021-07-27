@@ -30,6 +30,10 @@ func isOrderPossible(ord Models.Order, c *gin.Context) bool{
 func isCoolDownOver() bool{
 	var ord Models.Order
 	Config.DB.Model(&ord).Last(&ord)
+	// if this is the first entry
+	if ord.ID == 0{
+		return true
+	}
 	currTime := time.Now()
 	diffTime := currTime.Sub(ord.CreatedAt).Seconds()
 	if diffTime<=60{

@@ -15,10 +15,11 @@ func SetupRouter() *gin.Engine {
 		grp1.PATCH("product/:id", Controllers.UpdateProduct)
 		grp1.DELETE("product/:id", Controllers.DeleteProduct)
 	}
-	grp2 :=r.Group("/order")
+	grp2 :=r.Group("/order-api")
 	{
-		grp2.POST("",Controllers.OrderProduct)
-		grp2.GET(":id",Controllers.GetOrderByID)
+		grp2.POST("order",Controllers.OrderProduct)
+		grp2.GET("order/:id",Controllers.GetOrderByID)
+		grp2.GET("orders",Controllers.GetOrders)
 	}
 	return r
 }

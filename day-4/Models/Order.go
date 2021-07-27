@@ -15,3 +15,10 @@ func GetOrderByID(ord *Order, id string) (err error){
 	}
 	return nil
 }
+
+func GetAllOrders(ord *[]Order) (err error) {
+	if err = Config.DB.Find(ord).Error; err != nil {
+		return err
+	}
+	return nil
+}

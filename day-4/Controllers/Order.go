@@ -28,6 +28,7 @@ func OrderProduct(c *gin.Context){
 		})
 		return
 	}
+	ord.Status="order placed"
 	err = Models.OrderProduct(&ord)
 	if err != nil {
 		fmt.Println(err.Error())
@@ -50,5 +51,15 @@ func GetOrderByID(c *gin.Context){
 		c.AbortWithStatus(http.StatusNotFound)
 	}else{
 		c.JSON(http.StatusOK,ord)
+	}
+}
+
+func GetOrders(c *gin.Context) {
+	var ord []Models.Order
+	err := Models.GetAllOrders(&ord)
+	if err != nil {
+		c.AbortWithStatus(http.StatusNotFound)
+	} else {
+		c.JSON(http.StatusOK, ord)
 	}
 }
