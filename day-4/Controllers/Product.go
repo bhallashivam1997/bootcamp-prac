@@ -1,4 +1,4 @@
-//Controllers/User.go
+//Controllers/Product.go
 package Controllers
 import (
 	"bootcamp-prac/day-4/Models"
@@ -29,7 +29,7 @@ func CreateProduct(c *gin.Context) {
 		c.AbortWithStatus(http.StatusNotFound)
 	} else {
 		c.JSON(http.StatusOK, gin.H{
-			"id": prod.Id,
+			"id": prod.ID,
 			"product_name": prod.ProductName,
 			"price": prod.Price,
 			"quantity": prod.Quantity,
@@ -76,27 +76,5 @@ func DeleteProduct(c *gin.Context) {
 		c.AbortWithStatus(http.StatusNotFound)
 	} else {
 		c.JSON(http.StatusOK, gin.H{"id" + id: "is deleted"})
-	}
-}
-
-//OrderProduct ... Order product for the user
-func OrderProduct(c *gin.Context){
-	var prod Models.Product
-	err := c.BindJSON(&prod)
-	if err != nil {
-		return
-	}
-	err = Models.CreateProduct(&prod)
-	if err != nil {
-		fmt.Println(err.Error())
-		c.AbortWithStatus(http.StatusNotFound)
-	} else {
-		c.JSON(http.StatusOK, gin.H{
-			"id": prod.Id,
-			"product_name": prod.ProductName,
-			"price": prod.Price,
-			"quantity": prod.Quantity,
-			"message": "product successfully added",
-		})
 	}
 }
