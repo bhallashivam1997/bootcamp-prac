@@ -1,5 +1,6 @@
 //main.go
 package main
+
 import (
 	"bootcamp-prac/day-4/Config"
 	"bootcamp-prac/day-4/Models"
@@ -7,6 +8,7 @@ import (
 	"fmt"
 	"github.com/jinzhu/gorm"
 )
+
 var err error
 func main() {
 	Config.DB, err = gorm.Open("mysql", Config.DbURL(Config.BuildDBConfig()))
