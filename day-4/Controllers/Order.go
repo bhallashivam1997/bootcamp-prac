@@ -21,6 +21,13 @@ func OrderProduct(c *gin.Context){
 		})
 		return
 	}
+	cooldown := isCoolDownOver()
+	if cooldown == false{
+		c.JSON(http.StatusOK,gin.H{
+			"status":"cannot make another order request for next 1 minute",
+		})
+		return
+	}
 	err = Models.OrderProduct(&ord)
 	if err != nil {
 		fmt.Println(err.Error())
